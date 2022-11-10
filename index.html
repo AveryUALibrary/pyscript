@@ -11,6 +11,7 @@
         - matplotlib
         - paths:
             - ./constants.py
+            - ./utils.py
     </py-env>
 
 </head>
@@ -50,6 +51,36 @@
         submit_button.addEventListener("click", name_proxy)
 
         
+    </py-script>
+
+    <div id="clock"></div>
+
+    <py-script>
+from utils import now
+import asyncio
+
+async def clock():
+    while True:
+        await asyncio.sleep(1)
+        output = now()
+        Element("clock").write(output)
+pyscript_loader.close()
+pyscript.run_until_complete(clock())
+    </py-script>
+
+    <div id="clock2"></div>
+
+    <py-script>
+from utils import now
+import asyncio
+
+async def clock():
+    while True:
+        await asyncio.sleep(1)
+        output = now()
+        pyscript.write("clock2", output)
+pyscript_loader.close()
+pyscript.run_until_complete(clock())
     </py-script>
 
 </body>
