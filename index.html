@@ -7,14 +7,31 @@
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
+    <py-env>
+        - numpy
+        - matplotlib
+        - paths:
+            - ./constants.py
+    </py-env>
+
 </head>
 <body>
-    Hello World! <br>
-    This is the current date and time, in python:
+    <h1>Plotting something cool</h1>
+    <div id="plot"></div>
+    <py-script output="plot">
+        import matplotlib.pyplot as plt
+        import numpy as np
+        from constants import pi
+        x, y = np.random.randn(100)*pi, np.random.randn(100)*pi
+
+        fig, ax = plt.subplots()
+        ax.scatter(x, y)
+        fig
+    </py-script>
+    <div id="hello"></div>
     <py-script>
-        from datetime import datetime
-        now = datetime.now()
-        now.strftime("%m/%d/%Y, %H:%M:%S")
+        name = "Avery"
+        pyscript.write("hello", f'Hello, {name}!!!')
     </py-script>
 
 </body>
