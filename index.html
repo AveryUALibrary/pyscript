@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pyscript Website</title>
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+</head>
+<body>
+    Hello World! <br>
+    This is the current date and time, in python:
+    <py-script>
+        from datetime import datetime
+        now = datetime.now()
+        now.strftime("%m/%d/%Y, %H:%M:%S")
+    </py-script>
+
+</body>
+</html>
