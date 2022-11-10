@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Pyscript Website</title>
 
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
     <py-env>
@@ -28,10 +27,29 @@
         ax.scatter(x, y)
         fig
     </py-script>
-    <div id="hello"></div>
+    <div id="hello">Hello!!!</div>
+    <input type="text" id="user_name" name="user_name" />
+    <input type="button" id="submitBtn" value="Submit"/>
+
+
     <py-script>
-        name = "Avery"
-        pyscript.write("hello", f'Hello, {name}!!!')
+        from js import document
+        from pyodide.ffi import create_proxy
+
+        def hello(e):
+            inp = Element("user_name").element
+            name = inp.value
+            inp.value = ""
+            if (len(name) > 0):
+                pyscript.write("hello", f'Hello, {name}!!!')
+            else:
+                pyscript.write("hello", f'Hello!!!')
+        
+        name_proxy = create_proxy(hello)
+        submit_button = document.getElementById("submitBtn")
+        submit_button.addEventListener("click", name_proxy)
+
+        
     </py-script>
 
 </body>
